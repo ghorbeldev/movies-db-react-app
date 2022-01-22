@@ -96,7 +96,7 @@ const HeroSlideItem = ({ item, className }) => {
 					</div>
 				</div>
 				<div className='hero-slide__item__content__poster'>
-					<img src={apiConfig.w500Image(item.poster_path)} />
+					<img src={apiConfig.w500Image(item.poster_path)} alt={item.title} />
 				</div>
 			</div>
 		</div>

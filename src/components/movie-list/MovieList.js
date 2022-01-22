@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './movie-list.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Button from '../button/Button';
 import tmdbApi, { category } from '../../api/tmdbApi';
-import apiConfig from '../../api/apiConfig';
 import MovieCard from '../movie-card/MovieCard';
 
 const MovieList = props => {
