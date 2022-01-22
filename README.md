@@ -1,2 +1,3 @@
-# movies-db-react-app
+# movies db react app
+
 React Movies DB application using tmdb api
