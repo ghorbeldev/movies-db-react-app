@@ -1,0 +1,72 @@
+@use '../../scss/' as *;
+
+.dropdown {
+	position: relative;
+	height: 40px;
+	transition: 0.3s;
+	width: 150px;
+	border-radius: 10px;
+	border: 2px solid $white;
+	&-selected__option {
+		width: 100%;
+		cursor: pointer;
+		height: 40px;
+		font-size: 0.9rem;
+		position: relative;
+		text-transform: uppercase;
+		font-weight: 600;
+		padding: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		box-shadow: 0 10px 20px rgba($black, 0.4);
+		&::after {
+			content: '';
+			position: absolute;
+			border: 6px solid;
+			border-color: $white transparent transparent transparent;
+			top: 50%;
+			right: 0.75rem;
+			transform: translateY(-25%);
+			transition: 0.25s ease;
+			cursor: pointer;
+		}
+	}
+	&-menu {
+		position: absolute;
+		top: 38px;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		overflow-y: scroll;
+		max-height: 250px;
+		text-align: start;
+		z-index: 99;
+		height: 0;
+		transition: 0.5s;
+		background-color: $black;
+		&::-webkit-scrollbar {
+			width: 4px;
+		}
+		&::-webkit-scrollbar-thumb {
+			border-radius: 2px;
+			background: rgba($white, 0.6);
+		}
+		&__item {
+			padding: 1rem;
+			font-weight: 500;
+			font-size: 0.8rem;
+			display: inline-block;
+			width: 100%;
+			border-bottom: 1px solid rgba($white, 0.2);
+		}
+	}
+	&.active {
+		.dropdown-selected__option::after {
+			transform: translateY(-75%) rotate(180deg);
+		}
+		.dropdown-menu {
+			height: 250px;
+		}
+	}
+}
