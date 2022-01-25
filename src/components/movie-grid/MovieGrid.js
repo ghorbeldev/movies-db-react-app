@@ -37,25 +37,23 @@ const MovieGrid = props => {
 						params,
 					});
 			}
+		} else if (keyword) {
+			const params = {
+				page: page + 1,
+				query: keyword,
+			};
+			response = await tmdbApi.search(props.category, {
+				params,
+			});
 		} else {
-			if (keyword) {
-				const params = {
-					page: page + 1,
-					query: keyword,
-				};
-				response = await tmdbApi.search(props.category, {
-					params,
-				});
-			} else {
-				console.log('yes');
-				const params = {
-					page: page + 1,
-					with_genres: genre_id,
-				};
-				response = await tmdbApi.get(`/discover/${category}`, { params });
-				console.log(response);
-			}
+			const params = {
+				page: page + 1,
+				with_genres: genre_id,
+			};
+			response = await tmdbApi.get(`/discover/${category}`, { params });
+			console.log(response);
 		}
+
 		setItems([...items, ...response.results]);
 		setPage(page + 1);
 	};
@@ -79,28 +77,26 @@ const MovieGrid = props => {
 							params,
 						});
 				}
+			} else if (keyword) {
+				const params = {
+					query: keyword,
+				};
+				response = await tmdbApi.search(props.category, {
+					params,
+				});
 			} else {
-				if (keyword) {
-					const params = {
-						query: keyword,
-					};
-					response = await tmdbApi.search(props.category, {
-						params,
-					});
-				} else {
-					console.log('yes');
-					const params = {
-						with_genres: genre_id,
-					};
-					response = await tmdbApi.get(`/discover/${category}`, { params });
-					console.log(response);
-				}
+				const params = {
+					with_genres: genre_id,
+				};
+				response = await tmdbApi.get(`/discover/${category}`, { params });
+				console.log(response);
 			}
+
 			setItems(response.results);
 			setTotalPage(response.total_pages);
 		};
 		getList();
-	}, [props.category, keyword, genre_id]);
+	}, [props.category, keyword, genre_id, category]);
 	return (
 		<>
 			<div className='section mb-3'>
